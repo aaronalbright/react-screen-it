@@ -5,7 +5,7 @@ node_modules
 # Project files
 .vscode
 .tmp
-build
+dist
 
 # Auth credentials
 .env
