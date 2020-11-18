@@ -12,17 +12,19 @@ export default class App extends Component {
       movies: movieData,
     };
   }
-  handleButtonClick(newMovie) {
+  addNewMovie(newMovie) {
     this.setState({ movies: [newMovie, ...this.state.movies] });
   }
-  handleButton(title) {
-    this.setState({movies: this.state.movies.filter(d => d.title !== title)})
+  handleRemove(title, index) {
+    const moviesNew = [...this.state.movies]
+    moviesNew.splice(index, 1);
+    this.setState({movies: moviesNew})
   }
   render() {
     return (
       <>
-        <MovieInfo sendEntry={d => this.handleButtonClick(d)} />
-        <MovieList movies={this.state.movies} handleRemove={d => this.handleButton(d)}/>
+        <MovieInfo sendEntry={d => this.addNewMovie(d)} />
+        <MovieList movies={this.state.movies} handleRemove={(title, i) => this.handleRemove(title, i)}/>
       </>
     );
   }

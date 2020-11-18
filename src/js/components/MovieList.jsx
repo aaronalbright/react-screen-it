@@ -26,7 +26,7 @@ export default function MovieList({movies, handleRemove}) {
             <div className="item__rating">
                 {fillStars(d.rating)}
                 </div>
-              <div className="item__delete"><button onClick={() => handleRemove(d.title)}>Remove</button></div>
+              <div className="item__delete"><button onClick={() => handleRemove(d.title, i)}>Remove</button></div>
             </div>;
       })}
     </div>
