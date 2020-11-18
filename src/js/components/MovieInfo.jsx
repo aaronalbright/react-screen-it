@@ -65,7 +65,7 @@ export default function MovieList(props) {
         />
       </div>
       <div className="info__cat">
-        <label htmlFor="movieCat">Cateogry</label>
+        <label htmlFor="movieCat">Category</label>
         <select
             className={cat == '' ? 'select select--none' : 'select'}
           id="movieCat"
