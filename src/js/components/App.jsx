@@ -15,11 +15,14 @@ export default class App extends Component {
   handleButtonClick(newMovie) {
     this.setState({ movies: [newMovie, ...this.state.movies] });
   }
+  handleButton(title) {
+    this.setState({movies: this.state.movies.filter(d => d.title !== title)})
+  }
   render() {
     return (
       <>
         <MovieInfo sendEntry={d => this.handleButtonClick(d)} />
-        <MovieList movies={this.state.movies}/>
+        <MovieList movies={this.state.movies} handleRemove={d => this.handleButton(d)}/>
       </>
     );
   }

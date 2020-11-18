@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import star from '../../assets/star.svg';
 import starFilled from '../../assets/star-filled.svg';
 
-export default function MovieList(props) {
-  const movies = props.movies;
+export default function MovieList({movies, handleRemove}) {
 
   const fillStars = (num) => {
       return [...Array(5).keys()].map(d => {
@@ -18,8 +17,8 @@ export default function MovieList(props) {
   return (
     <div className="movies-list">
       {movies.map((d,i) => {
-        return <div className="movies-list__item" key={`movie--${i}`}>
-            <div className="item__icon">{d.title.match(/\b(\w)/g).join('')}</div>
+        return <div className="movies-list__item" index={i} key={`movie--${i}`}>
+            <div className="item__icon">{d.title !== '' ? d.title.match(/\b(\w)/g).join('').toUpperCase().slice(0,4) : ''}</div>
             <div className="item__title">
                 {d.title}
             </div>
@@ -27,6 +26,7 @@ export default function MovieList(props) {
             <div className="item__rating">
                 {fillStars(d.rating)}
                 </div>
+              <div className="item__delete"><button onClick={() => handleRemove(d.title)}>Remove</button></div>
             </div>;
       })}
     </div>

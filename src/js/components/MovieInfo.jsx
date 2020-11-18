@@ -39,6 +39,10 @@ export default function MovieList(props) {
   };
 
   const hanldeButton = () => {
+    if (name == '' || cat == "" || rating == 0) {
+      alert("Please completely fill in the movie information")
+      return
+    }
     const movieEntry = {
       title: name,
       cat: cat,

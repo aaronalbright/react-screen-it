@@ -1,8 +1,8 @@
 [
     {
-        "title": "Death Becomes Her",
-        "cat": "Comedy",
-        "rating": 2
+        "title": "Lord of the Rings: The Two Towers",
+        "cat": "Action/Adventure",
+        "rating": 5
     },
     {
         "title": "Zoolander",
@@ -17,7 +17,7 @@
     {
         "title": "Ghostbusters",
         "cat": "Comedy",
-        "rating": 3
+        "rating": 4
     },
     {
         "title": "Shutter Island",

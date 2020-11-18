@@ -84,13 +84,14 @@ body > h1 {
     0 4px 8px 0 rgba(97, 160, 255, 0.25);
   border-radius: 8px;
   height: 72px;
-  transition: transform .2s ease-out, filter .2s ease-out, box-shadow .2s ease-out;
+  transition: transform 0.2s ease-out, filter 0.2s ease-out,
+    box-shadow 0.2s ease-out;
   &:hover {
     filter: brightness(120%);
     cursor: pointer;
     transform: translateY(-3px);
     box-shadow: 0 5px 4px 0 rgba(97, 160, 255, 0.5),
-    0 7px 8px 0 rgba(97, 160, 255, 0.25);
+      0 7px 8px 0 rgba(97, 160, 255, 0.25);
   }
 }
 
@@ -104,7 +105,8 @@ body > h1 {
     grid-template-columns: 64px 1fr 0.5fr;
     grid-template-areas:
       'icon title rating'
-      'icon cat rating';
+      'icon cat rating'
+      'del del del';
     border-top: 1px solid #eeeeee;
     padding: 30px 2.5rem;
     align-items: center;
@@ -130,6 +132,9 @@ body > h1 {
     font-weight: bold;
     font-size: 24px;
     color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .item__cat {
     grid-area: cat;
@@ -145,5 +150,34 @@ body > h1 {
   }
   .movies-list__item:last-child {
     border-bottom: 1px solid #eeeeee;
+  }
+  .item__delete {
+    grid-area: del;
+    place-self: center;
+    display: none;
+    button {
+      border-radius: 5px;
+      padding: 5px 10px;
+      background-color: rgb(233, 67, 67);
+      color: #fff;
+      border: 1px solid rgb(233, 67, 67);
+      &:hover {
+        cursor: pointer;
+        filter: brightness(130%);
+      }
+      &:focus {
+        outline: rgb(241, 35, 35) auto 1px;
+      }
+    }
+  }
+  .movies-list__item:hover {
+    background-color: #eee;
+    .item__title {
+      overflow: visible;
+      white-space: normal;
+    }
+    .item__delete {
+      display: block;
+    }
   }
 }
