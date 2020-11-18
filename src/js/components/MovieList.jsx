@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import star from '../../assets/star.svg';
 import starFilled from '../../assets/star-filled.svg';
 

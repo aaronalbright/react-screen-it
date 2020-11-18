@@ -29798,7 +29798,7 @@ module.exports = [{
 module.exports = "/star.87d417bf.svg";
 },{}],"../assets/star-filled.svg":[function(require,module,exports) {
 module.exports = "/star-filled.a33b3010.svg";
-},{}],"../js/components/MovieList.jsx":[function(require,module,exports) {
+},{}],"../js/components/MovieInfo.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29806,13 +29806,127 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = MovieList;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _star = _interopRequireDefault(require("../../assets/star.svg"));
 
 var _starFilled = _interopRequireDefault(require("../../assets/star-filled.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const categories = ['Action/Adventure', 'Comedy', 'Horror', 'Thriller', 'Romance', 'Historical', 'Drama', 'Sci-Fi', 'Western', 'Crime', 'Documentary'];
+
+function MovieList(props) {
+  const [name, setName] = (0, _react.useState)('');
+  const [cat, setCat] = (0, _react.useState)('');
+  const [rating, setRating] = (0, _react.useState)(0);
+
+  const createOptions = () => categories.map((d, i) => {
+    return /*#__PURE__*/_react.default.createElement("option", {
+      key: "cat--".concat(i),
+      value: d
+    }, d);
+  });
+
+  const handleStarClick = e => {
+    if (e.target.dataset.filled == 'false') {
+      setRating(e.target.dataset.key);
+    } else {
+      setRating(e.target.dataset.key);
+    }
+  };
+
+  const hanldeButton = () => {
+    const movieEntry = {
+      title: name,
+      cat: cat,
+      rating: rating
+    };
+    props.sendEntry(movieEntry);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "movie-info"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "info__title"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "movieTitle"
+  }, "Name"), /*#__PURE__*/_react.default.createElement("input", {
+    id: "movieTitle",
+    name: "title",
+    type: "text",
+    value: name,
+    placeholder: "Name of the movie",
+    onChange: e => setName(e.target.value)
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "info__cat"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "movieCat"
+  }, "Cateogry"), /*#__PURE__*/_react.default.createElement("select", {
+    className: cat == '' ? 'select select--none' : 'select',
+    id: "movieCat",
+    name: "cat",
+    value: cat,
+    onChange: e => setCat(e.target.value)
+  }, /*#__PURE__*/_react.default.createElement("option", {
+    value: "",
+    disabled: true
+  }, "Select a category"), createOptions())), /*#__PURE__*/_react.default.createElement("div", {
+    className: "info__rating"
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "movieRating"
+  }, "Rating"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "rating__stars"
+  }, [...Array(5).keys()].map(d => {
+    if (d < rating) {
+      return /*#__PURE__*/_react.default.createElement("img", {
+        className: "rating__star star--filled",
+        key: "star--".concat(d),
+        "data-filled": true,
+        "data-key": d + 1,
+        src: _starFilled.default,
+        alt: "filled star",
+        onClick: handleStarClick
+      });
+    } else {
+      return /*#__PURE__*/_react.default.createElement("img", {
+        className: "rating__star",
+        key: "star--".concat(d),
+        "data-filled": false,
+        "data-key": d + 1,
+        src: _star.default,
+        alt: "empty star",
+        onClick: handleStarClick
+      });
+    }
+  }))), /*#__PURE__*/_react.default.createElement("button", {
+    className: "info__button",
+    onClick: hanldeButton
+  }, "Add Movie"));
+}
+},{"react":"../../node_modules/react/index.js","../../assets/star.svg":"../assets/star.svg","../../assets/star-filled.svg":"../assets/star-filled.svg"}],"../js/components/MovieList.jsx":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MovieList;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _star = _interopRequireDefault(require("../../assets/star.svg"));
+
+var _starFilled = _interopRequireDefault(require("../../assets/star-filled.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function MovieList(props) {
   const movies = props.movies;
@@ -29866,6 +29980,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _movies = _interopRequireDefault(require("../../data/movies.json"));
 
+var _MovieInfo = _interopRequireDefault(require("./MovieInfo"));
+
 var _MovieList = _interopRequireDefault(require("./MovieList"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -29882,17 +29998,24 @@ class App extends _react.Component {
     };
   }
 
+  handleButtonClick(newMovie) {
+    this.setState({
+      movies: [newMovie, ...this.state.movies]
+    });
+  }
+
   render() {
-    return /*#__PURE__*/_react.default.createElement(_MovieList.default, {
+    return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_MovieInfo.default, {
+      sendEntry: d => this.handleButtonClick(d)
+    }), /*#__PURE__*/_react.default.createElement(_MovieList.default, {
       movies: this.state.movies
-    }); // <MovieInfo>
-    // <AddMovieBtn>
+    }));
   }
 
 }
 
 exports.default = App;
-},{"react":"../../node_modules/react/index.js","../../data/movies.json":"../data/movies.json","./MovieList":"../js/components/MovieList.jsx"}],"../js/main.jsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","../../data/movies.json":"../data/movies.json","./MovieInfo":"../js/components/MovieInfo.jsx","./MovieList":"../js/components/MovieList.jsx"}],"../js/main.jsx":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
