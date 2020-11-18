@@ -1,0 +1,13 @@
+# Node and Parcel
+node_modules
+.cache
+
+# Project files
+.vscode
+.tmp
+build
+
+# Auth credentials
+.env
+
+
